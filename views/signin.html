@@ -39,6 +39,22 @@
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script>
+        // 绑定submit提交事件
+        $('#signin_form').on('submit',function (e) {
+                        // 取消默认提交事件
+                        e.preventDefault();
+            //获取表单提交数据
+            const formData = $(this).serialize();
+            //发送请求
+            $.post('/signin',formData,function(data){
+                if(data.code===200){
+                    window.location.href="/";
+                }else{
+                    alert(data.message);
+                }
+            })
+
+        })
     </script>
 </body>
 
